@@ -1,0 +1,21 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: micro-servicecloud-zuul-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://microservice-eureka-server-7001:7001/eureka/
+  instance:
+    instance-id:  micro-servicecloud-zuul-gateway-${server.port}
+    prefer-ip-address: true
+
+zuul:
+  routes:
+    consume.serviceId: micro-service-share-consume-feign
+    consume.path: /consume/**
+  ignored-services: "*"         #原真实服务名忽略
+  prefix: /myConsume             #设置统一公共前缀
+
+

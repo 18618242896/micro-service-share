@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="micro-service-adminUI-server" />
+        <module name="micro-service-share-config-server" />
+        <module name="micro-service-share-consume" />
+        <module name="micro-service-share-consume-feign" />
+        <module name="micro-service-share-dynamic-datasource" />
+        <module name="micro-service-share-eureka-server" />
+        <module name="micro-service-share-product" />
+        <module name="micro-servicecloud-hystrix-dashboard" />
+        <module name="micro-servicecloud-hystrix-turbine" />
+        <module name="micro-servicecloud-zuul-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="micro-service-adminUI-server" target="1.8" />
+      <module name="micro-service-share-config-server" target="1.8" />
+      <module name="micro-service-share-consume" target="1.8" />
+      <module name="micro-service-share-consume-feign" target="1.8" />
+      <module name="micro-service-share-dynamic-datasource" target="1.8" />
+      <module name="micro-service-share-eureka-server" target="1.8" />
+      <module name="micro-service-share-parent" target="1.8" />
+      <module name="micro-service-share-product" target="1.8" />
+      <module name="micro-servicecloud-hystrix-dashboard" target="1.8" />
+      <module name="micro-servicecloud-hystrix-turbine" target="1.8" />
+      <module name="micro-servicecloud-zuul-gateway" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

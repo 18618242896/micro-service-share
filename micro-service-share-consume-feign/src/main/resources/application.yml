@@ -1,0 +1,68 @@
+server:
+  port: 80
+spring:
+  application:
+    name: micro-service-share-consume-feign
+  zipkin:
+    base-url: http://localhost:9411
+eureka:
+  client:
+    service-url:
+      defaultZone: http://microservice-eureka-server-7001:7001/eureka/
+    registry-fetch-interval-seconds: 30 #表示eureka client间隔多久去拉取服务注册信息，默认为30秒，对于api-gateway，如果要迅速获取服务注册状态，可以缩小该值，比如5秒
+  instance:
+    instance-id: micro-service-share-consume-${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 15  #定义服务失效的时间，默认90s.如果该值太大，则很可能将流量转发过去的时候，该instance已经不存活了。如果该值设置太小了，则instance则很可能因为临时的网络抖动而被摘除掉。
+    lease-renewal-interval-in-seconds: 5      #定义服务续约任务的调用间隔时间，默认30s（心跳）
+
+
+info:
+  app.name: micro-service-share-consume-feign-${server.port}
+
+#feign自带断路器,熔断器Hystrix参数配置
+feign:
+  hystrix:
+    enabled: true
+#ribbon的相关配置
+ribbon:
+  eager-load:
+    enabled: true                            #默认情况下Ribbon是懒加载的,配置饥饿加载，让Ribbon在应用启动时就初始化，可解决Feign/Ribbon可能第一次请求失败的问题。
+    clients: MICRO-SERVICE-SHARE-PRODUCT      # 多个用,分隔
+
+
+#ribbon:
+#  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule    #更改为随机负载均衡策略
+
+
+##############ribbon全局配置###################
+
+#一般超时定义在1秒以内，是比较通用以及合理的。
+#因为一个接口，理论的最佳响应速度应该在200ms以内，或者慢点的接口就几百毫秒。
+#如果一个接口响应时间达到1秒+，建议考虑用缓存、索引、NoSQL等各种你能想到的技术手段，优化一下性能。
+#否则你要是胡乱设置超时时间是几秒，甚至几十秒，万一下游服务偶然出了点问题响应时间长了点呢？那你这个线程池里的线程立马全部卡死！
+#具体hystrix的线程池以及超时时间的最佳生产实践，请见下一篇文章：《微服务架构如何保障双11狂欢下的99.99%高可用》
+#这两步解决之后，其实系统表现就正常了，核心服务B响应速度很快，而且超时时间也在1秒以内，不会出现hystrix线程池频繁卡死的情况了。
+#ribbon:
+#  ConnectTimeout: 1000
+#  ReadTimeout: 1000
+
+#DefaultClientConfigImpl
+## Max number of retries on the same server (excluding the first try)
+#sample-client.ribbon.MaxAutoRetries=1
+## Max number of next servers to retry (excluding the first server)
+#sample-client.ribbon.MaxAutoRetriesNextServer=1
+## Whether all operations can be retried for this client
+#sample-client.ribbon.OkToRetryOnAllOperations=true
+## Interval to refresh the server list from the source
+#sample-client.ribbon.ServerListRefreshInterval=2000
+## Connect timeout used by Apache HttpClient
+#sample-client.ribbon.ConnectTimeout=3000
+## Read timeout used by Apache HttpClient
+#sample-client.ribbon.ReadTimeout=3000
+## Initial list of servers, can be changed via Archaius dynamic property at runtime
+#sample-client.ribbon.listOfServers=www.microsoft.com:80,www.yahoo.com:80,www.google.com:80
+##############指定instance配置#################
+#MICROSERVICE-SHARE-PRODUCT:
+#  ribbon:
+#    MaxAutoRetries: 5

@@ -1,0 +1,22 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: micro-service-share-consume
+eureka:
+  client:
+    service-url:
+      defaultZone: http://microservice-eureka-server-7001:7001/eureka/
+    registry-fetch-interval-seconds: 30 #表示eureka client间隔多久去拉取服务注册信息，默认为30秒，对于api-gateway，如果要迅速获取服务注册状态，可以缩小该值，比如5秒
+  instance:
+    instance-id: micro-service-share-consume-${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 15  #定义服务失效的时间，默认90s.如果该值太大，则很可能将流量转发过去的时候，该instance已经不存活了。如果该值设置太小了，则instance则很可能因为临时的网络抖动而被摘除掉。
+    lease-renewal-interval-in-seconds: 5      #定义服务续约任务的调用间隔时间，默认30s（心跳）
+
+
+info:
+  app.name: micro-service-share-consume-${server.port}
+
+

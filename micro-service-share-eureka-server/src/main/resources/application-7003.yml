@@ -1,0 +1,13 @@
+server:
+  port: 7003
+eureka:
+  client:
+    service-url:
+      defaultZone: http://microservice-eureka-server-7001:7001/eureka/,http://microservice-eureka-server-7002:7002/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    hostname: microservice-eureka-server-7003
+spring:
+  application:
+    name: microservice-eureka-server

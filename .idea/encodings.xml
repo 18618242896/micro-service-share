@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/micro-service-adminUI-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-share-config-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-share-consume" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-share-consume-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-share-dynamic-datasource" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-share-eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-share-parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-share-product" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-servicecloud-hystrix-dashboard" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-servicecloud-hystrix-turbine" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-servicecloud-zuul-gateway" charset="UTF-8" />
+  </component>
+</project>

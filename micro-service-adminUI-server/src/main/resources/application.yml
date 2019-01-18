@@ -1,0 +1,52 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: microservice-share-adminUI
+  security:
+    user:
+      name: "user"
+      password: "password"
+  mail:
+    host: smtp.exmail.qq.com
+    username: ******@*****
+    password: *****
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://microservice-eureka-server-7001:7001/eureka
+    registry-fetch-interval-seconds: 5
+    register-with-eureka: false
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path:   /actuator/health
+
+    metadata-map:
+      user.name: ${spring.security.user}
+      user.password: ${spring.security.user.password}
+    instance-id:   microservice-share-adminUI
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,service-registry
+  endpoint:
+    health:
+      show-details: always
+
+
+
+
+
+

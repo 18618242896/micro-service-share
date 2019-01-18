@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: micro-servicecloud-hystrix-turbine
+server:
+  port: 9666
+management:
+  server:
+    port: 9667
+eureka:
+  client:
+    service-url:
+      defaultZone: http://microservice-eureka-server-7001:7001/eureka/
+turbine:
+  app-config: MICRO-SERVICE-SHARE-PRODUCT	                 #表示监控的服务实例（通过serviceId;多个服务实例以逗号分隔）
+  cluster-name-expression: new String("default")
+  combine-host-port: true
+  aggregator:
+    cluster-config: "default"

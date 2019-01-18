@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/micro-service-adminUI-server/micro-service-adminUI-server.iml" filepath="$PROJECT_DIR$/micro-service-adminUI-server/micro-service-adminUI-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-share-config-server/micro-service-share-config-server.iml" filepath="$PROJECT_DIR$/micro-service-share-config-server/micro-service-share-config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-share-consume/micro-service-share-consume.iml" filepath="$PROJECT_DIR$/micro-service-share-consume/micro-service-share-consume.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-share-consume-feign/micro-service-share-consume-feign.iml" filepath="$PROJECT_DIR$/micro-service-share-consume-feign/micro-service-share-consume-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-share-dynamic-datasource/micro-service-share-dynamic-datasource.iml" filepath="$PROJECT_DIR$/micro-service-share-dynamic-datasource/micro-service-share-dynamic-datasource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-share-eureka-server/micro-service-share-eureka-server.iml" filepath="$PROJECT_DIR$/micro-service-share-eureka-server/micro-service-share-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-share-parent/micro-service-share-parent.iml" filepath="$PROJECT_DIR$/micro-service-share-parent/micro-service-share-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-share-product/micro-service-share-product.iml" filepath="$PROJECT_DIR$/micro-service-share-product/micro-service-share-product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-servicecloud-hystrix-dashboard/micro-servicecloud-hystrix-dashboard.iml" filepath="$PROJECT_DIR$/micro-servicecloud-hystrix-dashboard/micro-servicecloud-hystrix-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-servicecloud-hystrix-turbine/micro-servicecloud-hystrix-turbine.iml" filepath="$PROJECT_DIR$/micro-servicecloud-hystrix-turbine/micro-servicecloud-hystrix-turbine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-servicecloud-zuul-gateway/micro-servicecloud-zuul-gateway.iml" filepath="$PROJECT_DIR$/micro-servicecloud-zuul-gateway/micro-servicecloud-zuul-gateway.iml" />
+    </modules>
+  </component>
+</project>
