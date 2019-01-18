@@ -3,6 +3,8 @@ package com.share.product.controller;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.share.product.entity.User;
+import com.share.product.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @DefaultProperties(defaultFallback = "defaultFallbackMethod")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private Environment environment;
@@ -30,22 +35,14 @@ public class UserController {
     @HystrixCommand(commandKey = "user-commandKey",commandProperties = {
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10")
     })
-    public String get(@PathVariable("userId") Integer userId){
+    public User get(@PathVariable("userId") Integer userId){
         if(userId == null || userId <= 0){
             throw new RuntimeException("非法的userId");
         }
         if(userId %2 == 0){
             throw new RuntimeException("非法的userId-->偶数");
         }
-        /*long start = System.currentTimeMillis();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println((System.currentTimeMillis() - start)+"ms");*/
-        String profilesActive = environment.getProperty("spring.profiles.active");
-        return "profilesActive:"+profilesActive+"\t:userId"+userId+"\tapolloValue:"+apolloValue;
+        return userService.get(userId);
     }
 
     public String getFallbackMethod(Integer userId){
@@ -56,9 +53,12 @@ public class UserController {
 
     /**
      *
+     * @param throwable 获取到的异常
      * @return
      */
-    public String defaultFallbackMethod(){
+    public String defaultFallbackMethod(Throwable throwable){
+
+
         System.out.println("defaultFallbackMethod..............................");
         String profilesActive = environment.getProperty("spring.profiles.active");
         return "profilesActive:"+profilesActive+"\tdefaultFallbackMethod..............................";

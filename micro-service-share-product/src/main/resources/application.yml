@@ -15,6 +15,24 @@ management:
       exposure:
         include: hystrix.stream,service-registry,info,health
 
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: "classpath*:com/share/product/mapper/*Mapper.xml"
+spring:
+  datasource:
+    username: root
+    password: "/Akk2pyqQ8ohJN8tOmGwdPr64BNxG/hnjXZqZrp2d7X8BNk1:"
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://192.168.6.21:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 192.168.6.21:26379,192.168.6.21:26380,192.168.6.31:26379,192.168.6.31:26380
+    password: 02d524045429941cc15f59e41cb7be6c52
+    database: 6
+    jedis:
+      pool:
+        max-active: 8   #连接池最大连接数,默认8个，（使用负值表示没有限制）
 
 #详见hystrix的一些配置
 #default表示全局配置，如需特殊设置，见如下user-commandKey
