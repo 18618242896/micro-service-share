@@ -1,5 +1,6 @@
 package com.share.consume.config;
 
+import com.share.consume.entity.User;
 import com.share.consume.service.ConsumeService;
 import feign.hystrix.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -19,11 +20,10 @@ public class ConsumeServiceFallbackFactory implements FallbackFactory<ConsumeSer
     public ConsumeService create(Throwable cause) {
         System.out.println("message:"+cause.getMessage());
         cause.printStackTrace();
-        return new ConsumeService() {
-            @Override
-            public String get(Integer userId) {
-                return "ConsumeServiceFallbackFactory fail.........";
-            }
+        return userId -> {
+            User user = new User();
+            user.setUserId(userId);
+            return user;
         };
     }
 }

@@ -39,9 +39,7 @@ public class UserController {
         if(userId == null || userId <= 0){
             throw new RuntimeException("非法的userId");
         }
-        if(userId %2 == 0){
-            throw new RuntimeException("非法的userId-->偶数");
-        }
+        System.out.println("get...");
         return userService.get(userId);
     }
 
@@ -56,11 +54,8 @@ public class UserController {
      * @param throwable 获取到的异常
      * @return
      */
-    public String defaultFallbackMethod(Throwable throwable){
+    public User defaultFallbackMethod(Throwable throwable){
+        return new User();
 
-
-        System.out.println("defaultFallbackMethod..............................");
-        String profilesActive = environment.getProperty("spring.profiles.active");
-        return "profilesActive:"+profilesActive+"\tdefaultFallbackMethod..............................";
     }
 }
