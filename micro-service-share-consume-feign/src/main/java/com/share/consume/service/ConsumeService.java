@@ -1,6 +1,7 @@
 package com.share.consume.service;
 
 import com.share.consume.config.ConsumeServiceFallbackFactory;
+import com.share.consume.entity.User;
 import config.ConsumeServiceFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,5 +16,5 @@ public interface ConsumeService {
 
 
     @RequestMapping("/get/{userId}")
-    String get(@PathVariable("userId") Integer userId);
+    User get(@PathVariable("userId") Integer userId);
 }

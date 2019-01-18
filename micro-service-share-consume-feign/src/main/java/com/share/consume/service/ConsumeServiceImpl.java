@@ -1,5 +1,6 @@
 package com.share.consume.service;
 
+import com.share.consume.entity.User;
 import org.springframework.stereotype.Component;
 
 
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConsumeServiceImpl implements ConsumeService {
     @Override
-    public String get(Integer userId) {
-        return "ConsumeServiceImpl fail back......";
+    public User get(Integer userId) {
+        User user = new User();
+        user.setUserId(-1);
+        user.setUserName("fail.....");
+        return user;
     }
 }
