@@ -57,6 +57,7 @@ public class UserService {
     }
 
     public List<User> findAll(String userIdStr) {
+        System.out.println("userIdStr:"+userIdStr);
         if(StringUtils.isEmpty(userIdStr)){
             return null;
         }
