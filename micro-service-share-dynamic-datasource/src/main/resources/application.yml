@@ -6,9 +6,9 @@ mybatis:
 spring:
   datasource:
     username: root
-    password: "/*****/hnjXZqZrp2d7X8BNk1:"
+    password: "/*****/*******:"
     driver-class-name: org.gjt.mm.mysql.Driver
-    url: jdbc:mysql://*****/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://*******/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
   redis:
     sentinel:
       master: mymaster
