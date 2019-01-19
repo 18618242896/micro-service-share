@@ -3,6 +3,8 @@ package com.share.consume.service;
 import com.share.consume.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 /**
  * Fallback class for the specified Feign client interface. The fallback class must
@@ -16,5 +18,10 @@ public class ConsumeServiceImpl implements ConsumeService {
         user.setUserId(-1);
         user.setUserName("fail.....");
         return user;
+    }
+
+    @Override
+    public List<User> findAll(String userIdList) {
+        return null;
     }
 }

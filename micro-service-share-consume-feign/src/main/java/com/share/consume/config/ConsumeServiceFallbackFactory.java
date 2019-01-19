@@ -6,6 +6,9 @@ import feign.hystrix.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Define a fallback factory for the specified Feign client interface. The fallback
  * factory must produce instances of fallback classes that implement the interface
@@ -20,10 +23,16 @@ public class ConsumeServiceFallbackFactory implements FallbackFactory<ConsumeSer
     public ConsumeService create(Throwable cause) {
         System.out.println("message:"+cause.getMessage());
         cause.printStackTrace();
-        return userId -> {
-            User user = new User();
-            user.setUserId(userId);
-            return user;
+        return new ConsumeService() {
+            @Override
+            public User get(Integer userId) {
+                return new User();
+            }
+
+            @Override
+            public List<User> findAll(String userIdList) {
+                return new ArrayList<>();
+            }
         };
     }
 }
