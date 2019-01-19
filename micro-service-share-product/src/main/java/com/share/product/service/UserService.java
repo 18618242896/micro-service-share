@@ -1,8 +1,10 @@
 package com.share.product.service;
 
+import com.google.common.collect.Lists;
 import com.share.product.entity.User;
 import com.share.product.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -10,6 +12,8 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -50,5 +54,19 @@ public class UserService {
         User user = new User();
         user.setUserId(userId);
         userMapper.deleteUser(user);
+    }
+
+    public List<User> findAll(String userIdStr) {
+        if(StringUtils.isEmpty(userIdStr)){
+            return null;
+        }
+        String[] userIdArray = userIdStr.split(",");
+        List<Integer> userIdList = Lists.newArrayList();
+        for(String userId : userIdArray){
+            userIdList.add(Integer.valueOf(userId));
+        }
+        return userMapper.findAll(userIdList);
+
+
     }
 }

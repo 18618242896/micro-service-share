@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 @RestController
-@DefaultProperties(defaultFallback = "defaultFallbackMethod")
+//@DefaultProperties(defaultFallback = "defaultFallbackMethod")
 public class UserController {
 
     @Autowired
@@ -34,7 +37,7 @@ public class UserController {
     @RequestMapping("/get/{userId}")
     @HystrixCommand(commandKey = "user-commandKey",commandProperties = {
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10")
-    })
+    },fallbackMethod = "getFallbackMethod")
     public User get(@PathVariable("userId") Integer userId){
         if(userId == null || userId <= 0){
             throw new RuntimeException("非法的userId");
@@ -43,10 +46,14 @@ public class UserController {
         return userService.get(userId);
     }
 
-    public String getFallbackMethod(Integer userId){
-        System.out.println("fallback..............................");
-        String profilesActive = environment.getProperty("spring.profiles.active");
-        return "profilesActive:"+profilesActive+"\t:userId"+userId+"\tfallback...............";
+    public User getFallbackMethod(Integer userId){
+        return new User();
+    }
+
+    @RequestMapping("/findAll")
+    public List<User> findAll(String userIdList){
+        System.out.println("findAll......");
+        return userService.findAll(userIdList);
     }
 
     /**
@@ -56,6 +63,15 @@ public class UserController {
      */
     public User defaultFallbackMethod(Throwable throwable){
         return new User();
+    }
 
+
+    @RequestMapping("/user/{t1}/aaa")
+    public String test(@PathVariable("t1") String t1, String t3, Integer userId, HttpServletRequest request){
+        System.out.println("t1:"+t1);
+        System.out.println("t3:"+t3);
+        System.out.println("userId:"+userId);
+        System.out.println(request.getParameter("userName"));
+        return "success";
     }
 }
