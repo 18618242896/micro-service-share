@@ -1,0 +1,56 @@
+server:
+  port: 80
+spring:
+  cloud:
+    stream:
+      defaultBinder: rabbit           #全局采用rabbitMQ
+      bindings:
+        input:
+          destination: ${destination.default.queue}
+          group: ${destination.default.group}                  #加上该配置对应的队列就是持久化
+        output:
+          destination: ${destination.default.queue}
+          contentType: text/plain
+        inputOrder:
+          destination: ${destination.order.queue}
+          group: ${destination.order.group}
+        outputOrder:
+          destination: ${destination.order.queue}
+      rabbit:
+       bindings:
+        inputOrder:
+          consumer:
+            bindingRoutingKey: addProduct.*       # 用来绑定消费者的 routing key
+            autoBindDlq: true                     # 是否自动声明DLQ并将其绑定到绑定器DLX。 默认false
+            republishToDlq: true
+        outputOrder:
+          producer:
+            routing-key-expression: '''addProduct.*'''  # 需要用这个来指定 RoutingKey
+
+#https://docs.spring.io/spring-cloud-stream/docs/Chelsea.SR2/reference/htmlsingle/index.html#_rabbitmq_consumer_properties
+
+#spring.cloud.stream.rabbit.bindings.[channelName].consumer.autoBindDlq=true
+#spring.cloud.stream.rabbit.bindings.[channelName].consumer.republishToDlq=true
+
+#spring.cloud.stream.rabbit.bindings.[channelName].consumer.bindingRoutingKey,      指定了生成的消息队列的routing key
+#spring.cloud.stream.rabbit.bindings.[channelName].producer.routing-key-expression  指定了生产者消息投递的routing key
+
+
+
+#从kafka读取并写入rabbitmq的处理器应用程序（具有名称分别为“输入”和“输出”的通道）可以指定以下配置
+#spring.cloud.stream.bindings.input.binder=kafka
+#spring.cloud.stream.bindings.output.binder=rabbit
+
+
+##############定义目的地###################
+destination:
+  order:
+    queue: mqTestOrder
+    group: order
+  default:
+    queue: raw-sensor-data
+    group: hello
+
+
+
+
