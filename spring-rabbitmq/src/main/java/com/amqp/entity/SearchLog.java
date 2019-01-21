@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 日志
+ * 日志实体类，需要实现序列化接口
  */
 public class SearchLog implements Serializable{
 
